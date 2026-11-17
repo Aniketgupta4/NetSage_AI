@@ -1,0 +1,32 @@
+case_id,title,symptom,topology_note,show_outputs,expected_fault,osi_layer,concept,severity,device,device_type,status,source_ip,destination_ip,vlan_id,interface,protocol
+NET-001,VLAN 30 Server Unreachable,PC gets an IP address but cannot reach the server,PC -> SW1 -> R1 -> Server,show ip interface brief\nG0/0 192.168.30.1 up up\nshow ip route\nC 192.168.30.0/24 is directly connected,Inter-VLAN routing or ACL issue,Layer 3/4,VLAN,High,,,Open,,,,,
+CASE-001,VLAN connectivity failure,VLAN users cannot reach gateway,,,,,VLAN,High,SW-CORE-01,Switch,Open,192.168.20.15,192.168.20.1,20,GigabitEthernet0/1,ICMP
+CASE-002,Inter-VLAN routing failure,Inter-VLAN communication failing,,,,,VLAN,High,RTR-01,Router,Investigating,192.168.10.25,192.168.20.25,10,GigabitEthernet0/0,ICMP
+CASE-003,Interface down,Uplink interface is down,,,,,Interface,Critical,SW-ACCESS-02,Switch,Open,10.0.0.10,10.0.0.1,,GigabitEthernet0/24,Ethernet
+CASE-004,Duplicate IP address,Duplicate IP detected,,,,,IP,High,SW-ACCESS-01,Switch,Open,192.168.1.25,192.168.1.1,10,GigabitEthernet0/5,ARP
+CASE-005,Incorrect subnet mask,Host cannot reach remote subnet,,,,,IP,Medium,PC-102,Host,Open,192.168.10.50,192.168.20.50,10,Ethernet0,ICMP
+CASE-006,Missing default gateway,External network unreachable,,,,,Routing,Medium,PC-103,Host,Open,192.168.10.51,8.8.8.8,10,Ethernet0,ICMP
+CASE-007,VLAN mismatch,Device placed in wrong VLAN,,,,,VLAN,High,SW-ACCESS-03,Switch,Investigating,192.168.30.15,192.168.30.1,20,GigabitEthernet0/10,802.1Q
+CASE-008,Trunk configuration failure,VLAN traffic not passing trunk,,,,,VLAN,High,SW-CORE-01,Switch,Open,192.168.20.10,192.168.20.1,,GigabitEthernet0/2,802.1Q
+CASE-009,Routing table missing,Remote network unreachable,,,,,Routing,High,RTR-02,Router,Open,192.168.10.10,192.168.40.10,,GigabitEthernet0/1,IP
+CASE-010,Static route incorrect,Traffic sent to wrong next hop,,,,,Routing,High,RTR-03,Router,Investigating,192.168.10.20,192.168.50.20,,GigabitEthernet0/1,IP
+CASE-011,DHCP failure,Client not receiving IP address,,,,,IP,Medium,SW-ACCESS-04,Switch,Open,0.0.0.0,255.255.255.255,30,GigabitEthernet0/15,DHCP
+CASE-012,DNS resolution failure,Domain names cannot be resolved,,,,,DNS,Medium,PC-110,Host,Open,192.168.30.20,8.8.8.8,30,Ethernet0,DNS
+CASE-013,Port security violation,Port blocked due to security violation,,,,,Interface,High,SW-ACCESS-05,Switch,Open,192.168.40.20,192.168.40.1,40,GigabitEthernet0/8,802.1X
+CASE-014,ARP resolution failure,Gateway MAC cannot be resolved,,,,,Routing,High,PC-120,Host,Open,192.168.50.20,192.168.50.1,50,Ethernet0,ARP
+CASE-015,Packet loss,Intermittent connectivity,,,,,Interface,Medium,RTR-01,Router,Investigating,10.10.10.10,10.10.20.10,,GigabitEthernet0/2,ICMP
+CASE-016,Wrong IP configuration,Host cannot communicate,,,Incorrect IP address,,IP,High,PC-121,Host,Open,192.168.10.25,192.168.10.1,10,Ethernet0,ICMP
+CASE-017,Invalid gateway,Remote networks unreachable,,,Incorrect default gateway,,IP,High,PC-122,Host,Open,192.168.20.25,192.168.30.25,20,Ethernet0,ICMP
+CASE-018,Subnet mismatch,Gateway unreachable,,,Incorrect subnet mask,,IP,Medium,PC-123,Host,Open,192.168.30.25,192.168.30.1,30,Ethernet0,ICMP
+CASE-019,VLAN missing,Clients cannot communicate,,,VLAN does not exist,,VLAN,High,SW-ACCESS-06,Switch,Open,192.168.40.25,192.168.40.1,40,GigabitEthernet0/10,ICMP
+CASE-020,Access VLAN mismatch,Client placed in wrong network,,,Incorrect access VLAN,,VLAN,High,SW-ACCESS-07,Switch,Open,192.168.50.25,192.168.50.1,50,GigabitEthernet0/12,802.1Q
+CASE-021,Trunk VLAN missing,VLAN traffic stopped across trunk,,,VLAN not allowed on trunk,,VLAN,Critical,SW-CORE-02,Switch,Open,192.168.60.25,192.168.60.1,60,GigabitEthernet0/1,802.1Q
+CASE-022,Routing entry missing,Remote subnet unreachable,,,Missing route,,Routing,High,RTR-04,Router,Open,192.168.10.10,192.168.70.10,,GigabitEthernet0/1,IP
+CASE-023,Wrong next hop,Traffic follows incorrect path,,,Incorrect next hop,,Routing,High,RTR-05,Router,Investigating,192.168.10.20,192.168.80.20,,GigabitEthernet0/2,IP
+CASE-024,Interface administratively down,Endpoint has no connectivity,,,Interface shutdown,,Interface,Critical,SW-ACCESS-08,Switch,Open,192.168.90.20,192.168.90.1,90,GigabitEthernet0/8,Ethernet
+CASE-025,Interface error rate,Intermittent packet loss,,,Physical/interface errors,,Interface,High,SW-ACCESS-09,Switch,Investigating,192.168.100.20,192.168.100.1,100,GigabitEthernet0/9,Ethernet
+CASE-026,DHCP unavailable,Client receives no IP,,,DHCP server unavailable,,DHCP,Medium,SW-ACCESS-10,Switch,Open,0.0.0.0,255.255.255.255,110,GigabitEthernet0/15,DHCP
+CASE-027,DNS server unreachable,Domain resolution fails,,,DNS server unreachable,,DNS,Medium,PC-130,Host,Open,192.168.110.20,8.8.8.8,110,Ethernet0,DNS
+CASE-028,ARP failure,Gateway MAC unresolved,,,ARP resolution failure,,ARP,High,PC-131,Host,Open,192.168.120.20,192.168.120.1,120,Ethernet0,ARP
+CASE-029,ACL blocking traffic,Application traffic blocked,,,ACL rule blocking traffic,,Security,High,RTR-06,Router,Investigating,192.168.130.20,192.168.140.20,,GigabitEthernet0/0,TCP
+CASE-030,NAT translation failure,Internal clients cannot access Internet,,,NAT configuration failure,,NAT,High,RTR-07,Router,Open,192.168.150.20,8.8.8.8,,GigabitEthernet0/0,NAT
